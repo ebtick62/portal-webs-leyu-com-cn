@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>足彩竞猜 · 简明指南与访问提醒</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #faf8f5;
+            font-family: 'Segoe UI', 'PingFang SC', Roboto, 'Helvetica Neue', sans-serif;
+            color: #2c2c2c;
+            line-height: 1.7;
+            padding: 0 1.2rem;
+        }
+
+        .page {
+            max-width: 780px;
+            margin: 0 auto;
+            padding: 2.8rem 0 4rem;
+        }
+
+        /* ---------- hero 区 ---------- */
+        .hero {
+            margin-bottom: 2.8rem;
+            padding: 2.8rem 1.8rem 2.2rem;
+            background: #f4efe9;
+            border-radius: 32px 32px 60px 60px;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.02);
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            color: #332e28;
+            margin-bottom: 1rem;
+        }
+
+        .hero .sub {
+            font-size: 1.1rem;
+            color: #5f5950;
+            background: #fffcf9;
+            display: inline-block;
+            padding: 0.2rem 1.6rem;
+            border-radius: 40px;
+            margin-bottom: 1.6rem;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.02);
+        }
+
+        .hero p {
+            font-size: 1rem;
+            color: #4b463e;
+            max-width: 580px;
+            margin: 0 auto;
+        }
+
+        .hero .notice-badge {
+            display: inline-block;
+            margin-top: 1.4rem;
+            background: #dfd8cf;
+            color: #3a342c;
+            font-size: 0.85rem;
+            padding: 0.3rem 1.2rem;
+            border-radius: 30px;
+            letter-spacing: 0.4px;
+        }
+
+        /* ---------- 区块通用 ---------- */
+        section {
+            margin-bottom: 2.8rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #2f2a24;
+            border-left: 5px solid #b8a99a;
+            padding-left: 1rem;
+            margin-bottom: 1.4rem;
+        }
+
+        .card-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.4rem;
+        }
+
+        .card-item {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 1.4rem 1.6rem 1.6rem;
+            flex: 1 1 180px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+            border: 1px solid #f0ebe4;
+            transition: transform 0.2s ease;
+        }
+
+        .card-item:hover {
+            transform: translateY(-3px);
+            border-color: #d6cdc0;
+        }
+
+        .card-item h3 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #3b342e;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-item p {
+            font-size: 0.95rem;
+            color: #5e574e;
+        }
+
+        /* 引用 / 提示框 */
+        .callout {
+            background: #f0ece6;
+            border-left: 6px solid #b8a99a;
+            padding: 1.4rem 1.8rem;
+            border-radius: 12px 24px 24px 12px;
+            margin: 1.8rem 0;
+        }
+
+        .callout strong {
+            color: #2a251f;
+            display: block;
+            font-weight: 500;
+            margin-bottom: 0.3rem;
+        }
+
+        .callout p {
+            color: #49433b;
+            font-size: 0.98rem;
+        }
+
+        /* FAQ 摘要 */
+        .faq-block {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 1.8rem 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+            border: 1px solid #ece6df;
+        }
+
+        .faq-item {
+            padding: 1rem 0;
+            border-bottom: 1px solid #f0ebe4;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-q {
+            font-weight: 500;
+            color: #2d2822;
+            margin-bottom: 0.25rem;
+        }
+
+        .faq-a {
+            color: #5a534a;
+            font-size: 0.95rem;
+        }
+
+        .faq-a a {
+            color: #7a6b5a;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-thickness: 1px;
+            text-decoration-color: #ccbfb0;
+        }
+
+        .faq-a a:hover {
+            color: #4f4438;
+            text-decoration-color: #4f4438;
+        }
+
+        /* 底部链接区 */
+        .footer-links {
+            margin-top: 2.6rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e3dbd2;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: #5f5950;
+        }
+
+        .footer-links .sentence {
+            max-width: 480px;
+        }
+
+        .footer-links .sentence a {
+            color: #4f4438;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-thickness: 1px;
+            text-decoration-color: #c8bbb0;
+            font-weight: 450;
+        }
+
+        .footer-links .sentence a:hover {
+            color: #2f2820;
+            text-decoration-color: #2f2820;
+        }
+
+        .footer-links .meta {
+            color: #8a8278;
+            font-size: 0.8rem;
+        }
+
+        /* 小屏适配 */
+        @media (max-width: 520px) {
+            .page {
+                padding: 1.6rem 0 3rem;
+            }
+
+            .hero {
+                padding: 2rem 1.2rem 1.8rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .card-item {
+                flex: 1 1 100%;
+            }
+
+            .faq-block {
+                padding: 1.2rem 1.2rem;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- Hero 区 -->
+    <div class="hero">
+        <h1>足彩竞猜 · 简明指南</h1>
+        <div class="sub">从零开始的实用说明</div>
+        <p>
+            无论你是初次接触还是想梳理基本概念，这份页面整理了相关场景、优势要点以及常见问题摘要。
+            所有内容力求清晰、克制，帮助你快速建立整体认知。
+        </p>
+        <span class="notice-badge">📌 阅读前提醒：请先确认当地法律法规</span>
+    </div>
+
+    <!-- 优势区（特点/场景卡片） -->
+    <section>
+        <h2 class="section-title">几个值得了解的特点</h2>
+        <div class="card-list">
+            <div class="card-item">
+                <h3>信息透明</h3>
+                <p>规则、赔率、结算机制均公开可查，减少信息不对称带来的困惑。</p>
+            </div>
+            <div class="card-item">
+                <h3>结构清晰</h3>
+                <p>常见赛事与玩法分类明确，便于按需选择关注方向。</p>
+            </div>
+            <div class="card-item">
+                <h3>参照框架</h3>
+                <p>提供基本的分析维度，辅助个人判断，而非替代独立思考。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 说明区：简明指南 -->
+    <section>
+        <h2 class="section-title">从了解规则开始</h2>
+        <p style="margin-bottom: 0.6rem;">
+            参与前熟悉基本规则和常见术语是必要的一步。例如：让球盘、大小球、胜平负等基础概念，
+            以及不同联赛的赛制差异。建议通过官方或可信渠道获取赛程与数据。
+        </p>
+        <p>
+            同时留意时效性——阵容变化、场地、天气等因素都可能影响比赛走向。
+            保持理性心态，将竞猜视为一种分析练习，而非短期获利手段。
+        </p>
+
+        <!-- 提示框 -->
+        <div class="callout">
+            <strong>💡 访问提醒</strong>
+            <p>
+                若你希望进一步了解相关平台与资源，推荐使用主流搜索引擎查找「足彩竞猜」相关站点。
+                本页仅作概念介绍，不提供实时投注入口。
+            </p>
+        </div>
+    </section>
+
+    <!-- FAQ 摘要 -->
+    <section>
+        <h2 class="section-title">常见问题摘要</h2>
+        <div class="faq-block">
+            <div class="faq-item">
+                <div class="faq-q">Q：如何开始关注足彩竞猜？</div>
+                <div class="faq-a">建议先从熟悉五大联赛及主流杯赛入手，理解赛制与球队风格。可参考专业体育媒体积累背景信息。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">Q：有哪些需要特别注意的点？</div>
+                <div class="faq-a">务必确认所在地区相关法规。保持投入可控，不追求短期回报。任何分析都不代表必然结果。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">Q：想进一步了解相关服务？</div>
+                <div class="faq-a">
+                    可以自行搜索具有良好口碑的平台。作为基础信息页，我们推荐通过
+                    <a href="https://zh-zcjc.com">足彩竞猜</a>
+                    这个站点获取更系统的参考内容。
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 底部链接 / 收尾 -->
+    <div class="footer-links">
+        <div class="sentence">
+            本页内容仅作知识梳理，不构成任何建议。若希望拓展了解，可参考
+            <a href="https://zh-zcjc.com">足彩竞猜</a>
+            上的相关介绍。
+        </div>
+        <span class="meta">最后更新 · 2月 · 简明版</span>
+    </div>
+
+</div>
+</body>
+</html>
