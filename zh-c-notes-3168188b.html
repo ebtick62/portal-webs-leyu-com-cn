@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>雷竞技 · 简明入门与访问指南</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(145deg, #fef3e2 0%, #fce4ce 50%, #fadbc5 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1.5rem;
+            color: #3a2e28;
+            line-height: 1.6;
+        }
+
+        .page-wrapper {
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        /* 卡片通用 */
+        .card {
+            background: #fffffffa;
+            backdrop-filter: blur(2px);
+            border-radius: 32px;
+            box-shadow: 0 12px 30px rgba(140, 80, 40, 0.08), 0 4px 12px rgba(180, 120, 70, 0.06);
+            padding: 2.2rem 2rem;
+            margin-bottom: 2rem;
+            transition: box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 16px 38px rgba(140, 80, 40, 0.12);
+        }
+
+        /* hero 区 – 暖调渐变 */
+        .hero {
+            background: linear-gradient(135deg, #fbe9d7 0%, #f6d5b3 70%, #f3ccaa 100%);
+            border-radius: 40px;
+            padding: 3rem 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            border: 1px solid rgba(255, 235, 215, 0.5);
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: #3f2d1f;
+            margin-bottom: 0.6rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #5d4635;
+            max-width: 600px;
+            margin: 0.8rem auto 1.8rem auto;
+        }
+
+        .hero .tagline {
+            display: inline-block;
+            background: rgba(255, 245, 235, 0.6);
+            backdrop-filter: blur(4px);
+            padding: 0.4rem 1.2rem;
+            border-radius: 60px;
+            font-size: 0.95rem;
+            color: #5a3f2c;
+            border: 1px solid #eddccb;
+        }
+
+        /* 优势区网格 */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-top: 0.6rem;
+        }
+
+        .feature-item {
+            background: #fffcf8;
+            border-radius: 24px;
+            padding: 1.8rem 1.2rem;
+            text-align: center;
+            border: 1px solid #f5e3d3;
+            transition: transform 0.15s ease, background 0.2s;
+        }
+
+        .feature-item:hover {
+            background: #fff9f2;
+            transform: translateY(-3px);
+        }
+
+        .feature-item .emoji-icon {
+            font-size: 2.2rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-item h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            color: #3f2d1f;
+        }
+
+        .feature-item p {
+            font-size: 0.92rem;
+            color: #5e4b3c;
+        }
+
+        /* 说明区 + FAQ 共用 */
+        .section-title {
+            font-weight: 600;
+            font-size: 1.4rem;
+            color: #3f2d1f;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section-title span {
+            background: #e9d5c0;
+            width: 6px;
+            height: 26px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+
+        .explain-text {
+            font-size: 1rem;
+            color: #4a3b30;
+            margin-bottom: 0.8rem;
+        }
+
+        .explain-text a {
+            color: #ac6d4b;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.2s, color 0.1s;
+        }
+
+        .explain-text a:hover {
+            border-bottom-color: #c48a66;
+            color: #8b5c3f;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #efded1;
+            padding: 1rem 0;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-question {
+            font-weight: 600;
+            color: #3f2d1f;
+            margin-bottom: 0.2rem;
+            font-size: 1.05rem;
+        }
+
+        .faq-answer {
+            color: #58483b;
+            font-size: 0.95rem;
+        }
+
+        .faq-answer a {
+            color: #ac6d4b;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px dotted #dbb9a3;
+        }
+
+        .faq-answer a:hover {
+            border-bottom-style: solid;
+        }
+
+        /* 底部链接 */
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem 1.8rem;
+            padding: 0.5rem 0 1.2rem 0;
+            border-top: 1px solid #e5d1be;
+            margin-top: 1rem;
+        }
+
+        .footer-links a {
+            color: #6d5543;
+            text-decoration: none;
+            font-size: 0.95rem;
+            border-bottom: 1.5px solid transparent;
+            transition: border-color 0.2s, color 0.15s;
+            padding-bottom: 2px;
+        }
+
+        .footer-links a:hover {
+            border-bottom-color: #c48a66;
+            color: #3f2d1f;
+        }
+
+        .footer-meta {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #7d695a;
+            padding-top: 1.5rem;
+        }
+
+        /* 圆角按钮感链接（用于卡片内强调） */
+        .btn-link {
+            display: inline-block;
+            background: #f2e1d2;
+            border-radius: 60px;
+            padding: 0.3rem 1.2rem;
+            font-weight: 500;
+            color: #4e3829;
+            transition: background 0.2s, box-shadow 0.1s;
+            border: 1px solid #e5cfbc;
+            text-decoration: none;
+        }
+
+        .btn-link:hover {
+            background: #ebd5c2;
+            box-shadow: 0 2px 8px rgba(130, 75, 40, 0.08);
+        }
+
+        /* 响应式细节 */
+        @media (max-width: 600px) {
+            body {
+                padding: 1.2rem 0.8rem;
+            }
+
+            .hero {
+                padding: 2rem 1.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .card {
+                padding: 1.6rem 1.2rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.6rem;
+            }
+        }
+
+        @media (min-width: 700px) {
+            .hero p {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        <!-- Hero 区 -->
+        <section class="hero">
+            <h1>雷竞技 · 简明指南</h1>
+            <p>轻松了解竞技平台的定位与使用节奏，从第一步开始就保持清晰与从容。</p>
+            <div class="tagline">温和提醒 · 由浅入深</div>
+        </section>
+
+        <!-- 优势区：三个特征卡片 -->
+        <div class="card">
+            <div class="features-grid">
+                <div class="feature-item">
+                    <span class="emoji-icon">🧭</span>
+                    <h3>直观路径</h3>
+                    <p>从起点到目标，流程自然，不会在复杂菜单里绕路。适合习惯轻量操作的朋友。</p>
+                </div>
+                <div class="feature-item">
+                    <span class="emoji-icon">⚖️</span>
+                    <h3>平衡节奏</h3>
+                    <p>没有不必要的催促，你可以按自己的节奏了解规则、熟悉界面和常用功能。</p>
+                </div>
+                <div class="feature-item">
+                    <span class="emoji-icon">🛡️</span>
+                    <h3>基础提示</h3>
+                    <p>页面内常有温和的辅助说明，帮助你识别核心入口，减少初次摸索的疑惑。</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 说明区：从简明指南的角度展开 -->
+        <div class="card">
+            <div class="section-title">
+                <span></span> 从何开始？一份基础说明
+            </div>
+            <p class="explain-text">
+                如果你是第一次接触这类服务，建议先花几分钟浏览主要栏目。<a href="https://zh-c-leigame.com">雷竞技</a> 
+                的首页布局区分了不同功能区块，你可以从导航栏的常见分类入手，观察每个板块的名称与图标。多数页面都配有简短说明，
+                不需要提前记忆任何操作步骤。保持观察，慢慢就会熟悉。
+            </p>
+            <p class="explain-text">
+                在使用过程中，你可能会遇到一些术语或模块名称。不必着急，平台内的文字提示通常已经足够温和。
+                如果某个功能暂时不理解，可以先跳过，等到有需要时再回头查看。慢慢来，节奏由你掌控。
+            </p>
+            <p class="explain-text" style="margin-bottom: 0;">
+                另外，建议留意页面底部的辅助信息区域，那里往往放置了常用的指引和说明链接。
+                很多问题其实都可以在附近找到答案。记住：花点时间观察布局，比盲目点击更有效率。
+            </p>
+        </div>
+
+        <!-- FAQ 摘要区：三个常见问题 -->
+        <div class="card">
+            <div class="section-title">
+                <span></span> 常见疑问摘要
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Q：初次使用需要注册或下载吗？</div>
+                <div class="faq-answer">A：大部分基础浏览功能可以直接在网页上体验，不需要立即注册。等你熟悉之后再决定是否创建账号。具体的注册入口在 <a href="https://zh-c-leigame.com">雷竞技</a> 首页的对应位置，通常有清晰标识。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Q：页面加载或操作反馈慢怎么办？</div>
+                <div class="faq-answer">A：建议先检查网络连接，或尝试刷新一次。如果仍然较慢，可以稍后再试。平台有时会进行日常维护，耐心等待片刻通常就能恢复正常。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Q：怎样快速找到最常用的功能？</div>
+                <div class="faq-answer">A：首页的导航栏和主要卡片区已经列出了常见入口。你可以先点击自己感兴趣的分类，如果发现某个页面不是你想要的，使用浏览器的返回按钮即可。慢慢探索，比一次记下所有位置更轻松。</div>
+            </div>
+            <div style="margin-top: 0.8rem; font-size: 0.9rem; color: #6a5545;">
+                <span class="btn-link" style="cursor: default; background: #f5e6db;">更多疑问可参考页面内指引</span>
+            </div>
+        </div>
+
+        <!-- 底部链接区：宽泛的导航感，不强制点击 -->
+        <div class="footer-links">
+            <a href="https://zh-c-leigame.com">雷竞技</a>
+            <a href="#" style="cursor: default; opacity: 0.7;">使用说明</a>
+            <a href="#" style="cursor: default; opacity: 0.7;">常见问题</a>
+            <a href="#" style="cursor: default; opacity: 0.7;">联系支持</a>
+        </div>
+        <div class="footer-meta">
+            本页为独立介绍 · 提供方向性参考 · 内容仅供了解
+        </div>
+    </div>
+</body>
+</html>
